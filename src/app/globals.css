@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-lima: #c6f432;
+  --color-lima-oscuro: #3f6b00;
+  --color-carbon: #15171a;
+  --color-carbon-2: #23262a;
+  --color-fondo: #f3f4ef;
+  --color-suave: #e8eae3;
+  --color-borde: #e1e3dc;
+  --color-borde-2: #d5d8d0;
+  --color-muted: #585d64;
+  --color-alerta: #a63d0b;
+  --color-alerta-fondo: #fdebdd;
+  --font-sans: "Barlow", system-ui, sans-serif;
+  --font-display: "Barlow Condensed", "Barlow", system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-fondo);
+  color: var(--color-carbon);
+}
+
+.titulo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.campo {
+  min-height: 44px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--color-borde-2);
+  background: #fff;
+  padding: 0 12px;
+  font: inherit;
+  color: inherit;
+}
+.campo:focus {
+  outline: 2px solid var(--color-carbon);
+  outline-offset: 1px;
+}
+textarea.campo {
+  padding: 10px 12px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.btn-lima {
+  background: var(--color-lima);
+  color: var(--color-carbon);
+  font-weight: 700;
+}
+.btn-borde {
+  border: 1.5px solid var(--color-borde-2);
+  background: #fff;
+}
+.btn-oscuro {
+  background: var(--color-carbon);
+  color: var(--color-fondo);
+}
+.tarjeta {
+  background: #fff;
+  border: 1px solid var(--color-borde);
+  border-radius: 16px;
 }
