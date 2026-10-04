@@ -404,7 +404,7 @@ export function Constructor({
               id="nombre-programa"
               value={prog.nombre}
               onChange={(e) => cambiar((p) => ({ ...p, nombre: e.target.value }))}
-              className="titulo w-full rounded-lg border border-transparent bg-transparent px-1 py-1 text-3xl hover:border-borde-2 focus:border-carbon focus:bg-white focus:outline-none md:text-4xl"
+              className="titulo w-full rounded-lg border border-transparent bg-transparent px-1 py-1 text-2xl hover:border-borde-2 focus:border-carbon focus:bg-white focus:outline-none sm:text-3xl md:text-4xl"
             />
             <div className="flex items-center gap-2 px-1">
               <span
@@ -578,7 +578,7 @@ export function Constructor({
           </div>
         </div>
 
-        <div className="hidden grid-cols-[44px_minmax(170px,1fr)_124px_64px_80px_70px_88px_104px_minmax(110px,150px)_176px] gap-2 border-b border-borde px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-muted xl:grid">
+        <div className="hidden grid-cols-[44px_minmax(170px,1fr)_136px_64px_80px_70px_88px_104px_minmax(110px,150px)_176px] gap-2 border-b border-borde px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-muted xl:grid">
           <span>N°</span>
           <span>Ejercicio</span>
           <span>Metodología</span>
@@ -594,7 +594,7 @@ export function Constructor({
         <ol className="flex flex-col gap-3 p-3 xl:gap-0 xl:p-0">
           {dia.ejercicios.map((e, i) => (
             <li key={e.id} className="rounded-xl border border-borde xl:rounded-none xl:border-0 xl:border-b xl:border-[#EEF0EA]">
-              <div className="grid grid-cols-4 items-end gap-2 p-3 xl:grid-cols-[44px_minmax(170px,1fr)_124px_64px_80px_70px_88px_104px_minmax(110px,150px)_176px] xl:items-center xl:px-4 xl:py-2">
+              <div className="grid grid-cols-4 items-end gap-2 p-3 xl:grid-cols-[44px_minmax(170px,1fr)_136px_64px_80px_70px_88px_104px_minmax(110px,150px)_176px] xl:items-center xl:px-4 xl:py-2">
                 <div className="col-span-1 flex h-10 items-center">
                   <span className="titulo flex h-8 w-8 items-center justify-center rounded-lg bg-carbon text-lg text-lima">{i + 1}</span>
                 </div>
@@ -653,7 +653,7 @@ export function Constructor({
                     ))}
                   </select>
                 </label>
-                <label className={`${celda} col-span-2 xl:col-span-1`}>
+                <label className={celda}>
                   <span className={etiqueta}>Cadencia</span>
                   <input
                     className={`${input} text-center`}
@@ -662,7 +662,7 @@ export function Constructor({
                     onChange={(ev) => cambiarEj(i, { cadencia: ev.target.value })}
                   />
                 </label>
-                <label className={celda}>
+                <label className={`${celda} col-span-2 xl:col-span-1`}>
                   <span className={etiqueta}>Descanso</span>
                   <select className={input} value={e.descanso ?? ""} onChange={(ev) => cambiarEj(i, { descanso: ev.target.value || null })}>
                     <option value="">—</option>

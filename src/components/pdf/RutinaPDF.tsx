@@ -1,4 +1,4 @@
-import { Document, Image, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
+import { Document, Font, Image, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 import type { Dia } from "@/lib/tipos";
 import { fechaNumerica } from "@/lib/tipos";
 
@@ -13,6 +13,9 @@ export type DatosPDF = {
   qrDataUrl: string | null;
 };
 
+// Sin cortar palabras con guiones (ej. "SE-RIES")
+Font.registerHyphenationCallback((palabra) => [palabra]);
+
 const CARBON = "#15171A";
 const MUTED = "#585D64";
 const BORDE = "#D5D8D0";
@@ -20,13 +23,13 @@ const BORDE = "#D5D8D0";
 const COLS = [
   { key: "n", label: "N°", width: 20, align: "left" as const },
   { key: "nombre", label: "Ejercicio", flex: 1, align: "left" as const },
-  { key: "metodologia", label: "Metodología", width: 62, align: "left" as const },
-  { key: "series", label: "Series", width: 34, align: "center" as const },
+  { key: "metodologia", label: "Metodología", width: 60, align: "left" as const },
+  { key: "series", label: "Series", width: 38, align: "center" as const },
   { key: "reps", label: "Reps", width: 42, align: "center" as const },
   { key: "rir", label: "RIR", width: 26, align: "center" as const },
-  { key: "cadencia", label: "Cadencia", width: 46, align: "center" as const },
-  { key: "descanso", label: "Descanso", width: 48, align: "center" as const },
-  { key: "implemento", label: "Implemento", width: 82, align: "left" as const },
+  { key: "cadencia", label: "Cadencia", width: 50, align: "center" as const },
+  { key: "descanso", label: "Descanso", width: 52, align: "center" as const },
+  { key: "implemento", label: "Implemento", width: 84, align: "left" as const },
 ];
 
 const s = StyleSheet.create({
@@ -56,7 +59,7 @@ const s = StyleSheet.create({
   diaNombre: { fontFamily: "Helvetica-Bold", fontSize: 13, textTransform: "uppercase" },
   tabla: { borderWidth: 1, borderColor: BORDE, borderRadius: 5 },
   filaHead: { flexDirection: "row", backgroundColor: CARBON, color: "#F3F4EF", borderTopLeftRadius: 4, borderTopRightRadius: 4 },
-  celdaHead: { fontFamily: "Helvetica-Bold", fontSize: 6.5, letterSpacing: 0.6, textTransform: "uppercase", paddingVertical: 5, paddingHorizontal: 4 },
+  celdaHead: { fontFamily: "Helvetica-Bold", fontSize: 6.5, letterSpacing: 0.3, textTransform: "uppercase", paddingVertical: 5, paddingHorizontal: 4 },
   fila: { flexDirection: "row", borderTopWidth: 1, borderTopColor: "#E6E8E1", alignItems: "center" },
   celda: { paddingVertical: 5, paddingHorizontal: 4 },
   nota: { fontSize: 7, color: MUTED, marginTop: 1.5 },
@@ -65,6 +68,7 @@ const s = StyleSheet.create({
   leyendaTitulo: { fontFamily: "Helvetica-Bold", fontSize: 10, textTransform: "uppercase", marginBottom: 5 },
   leyendaTexto: { fontSize: 8, lineHeight: 1.4, marginBottom: 3 },
   negrita: { fontFamily: "Helvetica-Bold" },
+  notasCaja: { borderWidth: 1, borderColor: BORDE, borderRadius: 5, padding: 10, marginBottom: 12 },
   qrCaja: { width: 104, alignItems: "center" },
   qrTexto: { fontSize: 7, color: MUTED, textAlign: "center", marginTop: 4 },
   footer: {
@@ -192,7 +196,7 @@ export function RutinaPDF({ d }: { d: DatosPDF }) {
           ))}
 
           {d.notas ? (
-            <View style={[s.leyenda, { marginRight: 0, marginBottom: 12 }]} wrap={false}>
+            <View style={s.notasCaja} wrap={false}>
               <Text style={s.leyendaTitulo}>Notas del coach</Text>
               <Text style={s.leyendaTexto}>{d.notas}</Text>
             </View>
