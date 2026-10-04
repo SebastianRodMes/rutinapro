@@ -21,6 +21,7 @@ import {
   type Programa,
 } from "@/lib/tipos";
 import { Compartir } from "@/components/Compartir";
+import { urlPublica } from "@/lib/url";
 import { descargarBlob, generarPDF } from "@/components/pdf/generar";
 
 type Estado = "nuevo" | "sin-guardar" | "guardando" | "guardado" | "error";
@@ -287,7 +288,7 @@ export function Constructor({
   }, [estado]);
 
   // ---------- PDF / compartir ----------
-  const urlCompartir = prog.share_token && typeof window !== "undefined" ? `${window.location.origin}/r/${prog.share_token}` : null;
+  const urlCompartir = prog.share_token && typeof window !== "undefined" ? `${urlPublica()}/r/${prog.share_token}` : null;
 
   async function pdf(accion: "ver" | "descargar") {
     setPdfCargando(true);

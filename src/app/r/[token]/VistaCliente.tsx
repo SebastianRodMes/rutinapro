@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { diasEntre, fechaCorta, nombreArchivoPDF, type Ejercicio } from "@/lib/tipos";
 import { descargarBlob, generarPDF } from "@/components/pdf/generar";
+import { urlPublica } from "@/lib/url";
 
 type EjercicioPublico = Ejercicio & { hechas: number[]; peso_hoy: number | null; ultimo_peso: number | null };
 
@@ -96,7 +97,7 @@ export function VistaCliente({ token, inicial }: { token: string; inicial: Rutin
           dias: rutina.dias,
           coach: rutina.coach,
         },
-        window.location.href
+        `${urlPublica()}/r/${token}`
       );
       descargarBlob(blob, nombreArchivoPDF(rutina.cliente, rutina.nombre));
     } finally {

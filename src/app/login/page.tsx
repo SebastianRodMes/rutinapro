@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Logo } from "@/components/Logo";
+import { urlPublica } from "@/lib/url";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -43,7 +44,7 @@ export default function LoginPage() {
       password,
       options: {
         data: { nombre },
-        emailRedirectTo: `${window.location.origin}/auth/callback`,
+        emailRedirectTo: `${urlPublica()}/auth/callback`,
       },
     });
     setCargando(false);
